@@ -1,0 +1,28 @@
+doc-extractor/
+├── app/
+│   ├── main.py            # creates the app, mounts routers and web/
+│   ├── config.py          # form fields, keyword lists, thresholds, limits, DB url
+│   ├── schemas.py         # request/response models
+│   ├── db.py              # engine and session
+│   ├── models.py          # Record table
+│   ├── crud.py            # create, list, get, update, delete
+│   ├── routers/
+│   │   ├── extraction.py  # POST /extract
+│   │   └── records.py     # /records endpoints and CSV export
+│   └── pipeline/
+│       ├── types.py       # Word and Field data classes
+│       ├── preprocess.py  # Step 1: clean the image
+│       ├── ocr.py         # Step 2: image -> words, positions, confidence
+│       ├── normalize.py   # Step 3: digits, whitespace, small fixes
+│       ├── extract.py     # Step 4: find the fields
+│       ├── validate.py    # Step 5: checks and "please check" flag
+│       └── run.py         # chains steps 1-5
+├── web/                   # index.html, app.js, style.css
+├── scripts/generate_synthetic.py
+├── data/                  # git-ignored: synthetic/, real/
+├── eval/                  # eval_ocr.py, eval_fields.py, eval_corrections.py, results/
+├── tests/                 # test_normalize, test_validate, test_extraction_api, test_records_api
+├── requirements.txt
+├── Dockerfile
+├── .gitignore
+└── README.md
